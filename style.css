@@ -1,0 +1,14 @@
+*{
+    list-style-type: none;
+    margin: 0;
+    
+}
+
+li{
+    color: white;
+    background-color: #272727;
+}
+
+.rotate{
+    transform: rotate(-45deg);
+}

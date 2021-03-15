@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.2/css/all.min.css  ">
+    <title>Document</title>
+</head>
+
+<body ng-app="app" ng-controller="mainController">
+
+    <ul>
+        <li ng-repeat="item in treeData">
+            <i class="fas fa-sort-down arrows" ng-class='rotate[item.opened]' ng-click='item.opened = !item.opened'></i>
+            {{item.name}}
+            <ul ng-show="item.opened">
+                <li ng-repeat=" children in item.children">
+                    <i class="fab fa-js" ng-if="children.name.endsWith('js')"></i>
+                    <i class="fas fa-sort-down arrows" ng-class='rotate[children.opened]'
+                        ng-if='!children.name.endsWith("css") && !children.name.endsWith("html") && !children.name.endsWith("ts") && !children.name.endsWith("js")'
+                        ng-click='children.opened = !children.opened'></i>
+                    {{children.name}}
+                    <ul ng-show="children.opened">
+                        <li ng-repeat="child in children.children">
+                            <i class="fas fa-sort-down arrows" ng-class='rotate[child.opened]'
+                                ng-if='!child.name.endsWith("css") && !child.name.endsWith("html") && !child.name.endsWith("ts")'
+                                ng-click='child.opened = !child.opened'></i>
+                            <i class="fab fa-html5 icon" ng-if="child.name.endsWith('html')"></i>
+                            <i class="fas fa-hashtag" ng-if="child.name.endsWith('css')"></i>
+                            <i class="fab fa-js" ng-if="child.name.endsWith('ts')"></i> {{child.name}}
+
+                            <ul ng-show="child.opened">
+                                <li ng-repeat="child2 in child.children">
+                                    <i class="fas fa-hashtag" ng-if="child2.name.endsWith('css')"></i>
+                                    <i class="fab fa-js" ng-if="child2.name.endsWith('ts')"></i>
+                                    <i class="fab fa-html5 icon" ng-if="child2.name.endsWith('html')"></i>
+                                    {{child2.name}}
+                                </li>
+                            </ul>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </li>
+    </ul>
+    <script src="script.js"></script>
+</body>
+
+</html>
